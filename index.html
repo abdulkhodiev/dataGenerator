@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fake User Data Generator</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="control-group">
+                <label for="region">Select Region:</label>
+                <select id="region">
+                    <option value="poland">Poland</option>
+                    <option value="usa">USA</option>
+                    <option value="georgia">Georgia</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="errors">Number of Errors per Record:</label>
+                <input
+                    type="range"
+                    id="errors"
+                    min="0"
+                    max="10"
+                    step="0.1"
+                    value="0"
+                />
+                <input
+                    type="number"
+                    id="errorCount"
+                    min="0"
+                    max="1000"
+                    value="0"
+                />
+            </div>
+            <div class="control-group">
+                <label for="seed">Seed Value:</label>
+                <input type="text" id="seed" />
+                <button id="randomSeed">Random</button>
+            </div>
+            <div
+                class="control-group"
+                style="display: flex; justify-content: end; gap: 1rem"
+            >
+                <button id="generateData">Generate Data</button>
+                <button id="exportCsv">Export to CSV</button>
+            </div>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Random Identifier</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
