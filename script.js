@@ -46,7 +46,7 @@ function generateFakeData(region, errors, seed, pageIndex, pageSize) {
 
     for (let i = 0; i < pageSize; i++) {
         const index = (pageIndex - 1) * pageSize + i + 1;
-        let name = fakerConfig.name(); // Now calling the saved method
+        let name = fakerConfig.name();
         let address = fakerConfig.address();
         let phone = fakerConfig.phone();
 
@@ -76,12 +76,12 @@ function updateTable(appendData = false) {
     data.forEach((row) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${row.index}</td>
-            <td>${row.identifier}</td>
-            <td>${row.name}</td>
-            <td>${row.address}</td>
-            <td>${row.phone}</td>
-        `;
+                <td>${row.index}</td>
+                <td>${row.identifier}</td>
+                <td>${row.name}</td>
+                <td>${row.address}</td>
+                <td>${row.phone}</td>
+            `;
         dataTableBody.appendChild(tr);
     });
 }
@@ -119,34 +119,26 @@ function exportToCsv() {
     link.click();
     document.body.removeChild(link);
 }
-
 function applyErrors(text, errors, rng) {
+    console.log("Original Text:", text);
+
     for (let i = 0; i < errors; i++) {
-        const errorType = Math.floor(rng() * 3);
+        const errorType = Math.floor(rng() * 2);
+        const pos = Math.floor(rng() * text.length);
+
         switch (errorType) {
             case 0:
                 if (text.length > 0) {
-                    const pos = Math.floor(rng() * text.length);
                     text = text.substring(0, pos) + text.substring(pos + 1);
                 }
                 break;
             case 1:
-                const pos = Math.floor(rng() * text.length);
                 const char = getRandomChar(rng);
                 text = text.substring(0, pos) + char + text.substring(pos);
                 break;
-            case 2:
-                if (text.length > 1) {
-                    const pos = Math.floor(rng() * (text.length - 1));
-                    text =
-                        text.substring(0, pos) +
-                        text.charAt(pos + 1) +
-                        text.charAt(pos) +
-                        text.substring(pos + 2);
-                }
-                break;
         }
     }
+    console.log("Modified Text:", text);
     return text;
 }
 
